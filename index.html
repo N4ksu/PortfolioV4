@@ -368,7 +368,7 @@
             <div class="row">
                 <div class="right-content">
                     <div class="container">
-                        <form id="contact" action="" method="post" onsubmit="return validateForm()">
+                        <form id="contact">
                             <div class="row">
                                 <div class="col-md-6">
                                     <fieldset>
@@ -404,47 +404,53 @@
     </section>
 
     <script>
-        function validateForm() {
-            // Get form values
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const subject = document.getElementById('subject').value.trim();
-            const message = document.getElementById('message').value.trim();
+function validateForm(event) {
+  event.preventDefault(); // Prevent actual form submission
 
-            // Regular expression for email validation
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // Get form values
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const subject = document.getElementById('subject').value.trim();
+  const message = document.getElementById('message').value.trim();
 
-            // Validate name
-            if (name === "") {
-                alert("Please enter your name.");
-                return false;
-            }
+  // Regular expression for email validation
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            // Validate email
-            if (email === "") {
-                alert("Please enter your email.");
-                return false;
-            } else if (!emailPattern.test(email)) {
-                alert("Please enter a valid email address.");
-                return false;
-            }
+  // Validate name
+  if (name === "") {
+    alert("Please enter your name.");
+    return false;
+  }
 
-            // Validate subject
-            if (subject === "") {
-                alert("Please enter a subject.");
-                return false;
-            }
+  // Validate email
+  if (email === "") {
+    alert("Please enter your email.");
+    return false;
+  } else if (!emailPattern.test(email)) {
+    alert("Please enter a valid email address.");
+    return false;
+  }
 
-            // Validate message
-            if (message === "") {
-                alert("Please enter your message.");
-                return false;
-            }
+  // Validate subject
+  if (subject === "") {
+    alert("Please enter a subject.");
+    return false;
+  }
 
-            // If all validations pass
-            alert("Your message was sent successfully!");
-            return true;
-        }
+  // Validate message
+  if (message === "") {
+    alert("Please enter your message.");
+    return false;
+  }
+
+  // If all validations pass
+  alert("Your message was sent successfully!");
+  window.location.reload(); // Refresh the page
+  return false;
+}
+
+// Attach the handler to the form
+document.getElementById('contact').addEventListener('submit', validateForm);
     </script>
 
 
